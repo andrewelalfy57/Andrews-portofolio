@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Syne, Space_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -19,20 +20,23 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   title: "Andrew Alalfy — Senior Software Engineer",
   description:
-    "Full-Stack & Mobile Engineer based in Dubai, UAE. Specializing in Next.js, React Native, GraphQL, and enterprise-scale applications.",
+    "Senior Software Engineer at Emaar, Dubai. 4+ years building enterprise web and mobile apps across real-estate, life-sciences, and SaaS — Next.js, React Native, GraphQL.",
   keywords: [
     "Andrew Alalfy",
-    "Software Engineer",
+    "Andrew Ayman Alfy",
+    "Senior Software Engineer",
     "Full Stack Developer",
-    "React",
+    "React Native",
     "Next.js",
+    "GraphQL",
     "Dubai",
-    "UAE",
+    "Emaar",
+    "Veeva",
   ],
   openGraph: {
     title: "Andrew Alalfy — Senior Software Engineer",
     description:
-      "Full-Stack & Mobile Engineer based in Dubai, UAE. Building enterprise applications at scale.",
+      "Senior Software Engineer at Emaar, Dubai. Building enterprise systems serving 10,000+ users.",
     url: "https://andrewelalfy.com",
     siteName: "Andrew Alalfy",
     locale: "en_US",
@@ -41,7 +45,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Andrew Alalfy — Senior Software Engineer",
-    description: "Full-Stack & Mobile Engineer based in Dubai, UAE.",
+    description: "Building enterprise systems serving 10,000+ users from Dubai.",
   },
   robots: {
     index: true,
@@ -60,13 +64,12 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body
-        className={`${syne.variable} ${spaceMono.variable} antialiased`}
-        style={{ fontFamily: "var(--font-syne)" }}
-      >
+      <body className={`${syne.variable} ${spaceMono.variable} antialiased`}>
         <ThemeProvider>
-          <Navbar />
-          <main>{children}</main>
+          <SmoothScrollProvider>
+            <Navbar />
+            <main>{children}</main>
+          </SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>

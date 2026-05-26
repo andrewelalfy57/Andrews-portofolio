@@ -1,207 +1,235 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { ExternalLink, Globe, Cpu, Lock, Smartphone } from "lucide-react";
+import { motion } from "framer-motion";
+import FadeUp from "./FadeUp";
 
-function GithubIcon({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
-    </svg>
-  );
-}
+type Project = {
+  num: string;
+  title: string;
+  company: string;
+  year: string;
+  context: string;
+  challenge: string;
+  approach: string;
+  impact: string[];
+  stack: string[];
+  posterText: string;
+  private?: boolean;
+  href?: string;
+  featured?: boolean;
+};
 
-const projects = [
+const projects: Project[] = [
   {
-    title: "Emaar Social Portal",
-    company: "Emaar (Enterprise)",
-    description:
-      "Enterprise web application serving 10,000+ Emaar employees across departments. Features real-time collaboration, document management, and internal communications infrastructure built on Next.js + GraphQL.",
-    tags: ["Next.js", "GraphQL", "React", "TypeScript", "SQL"],
-    icon: Globe,
-    color: "from-indigo-500/20 to-indigo-600/5",
-    border: "border-indigo-500/20",
-    iconColor: "text-indigo-400",
+    num: "01",
+    posterText: "EMAAR",
+    title: "Emaar Internal Platform",
+    company: "Emaar Properties · Dubai",
+    year: "2025",
+    context:
+      "Five enterprise full-stack apps spanning Hotels, Communities, and Construction — the connective tissue between 10,000+ Emaar employees and their daily workflows.",
+    challenge:
+      "Legacy tools were siloed per division, slow on field devices, impossible to integrate. Field managers were keying data into spreadsheets while approvals routed through email.",
+    approach:
+      "Next.js (App Router) front-ends backed by GraphQL, sourced from tuned PostgreSQL and Strapi CMS. Shared design system. Server components where data is heavy, client components only where interactivity demands it.",
+    impact: ["10,000+ daily users", "60% lower fetch latency", "20% ahead of sprint", "85%+ coverage"],
+    stack: ["Next.js", "GraphQL", "TypeScript", "PostgreSQL", "Strapi"],
     private: true,
-    metrics: ["10K+ Users", "20% Faster Delivery", "85%+ Coverage"],
   },
   {
-    title: "Field Ops Mobile App",
-    company: "Emaar (Enterprise)",
-    description:
-      "React Native application enabling real-time data collection and synchronization for Emaar field managers. Reduced field operations time by 45% with offline-first architecture and live sync.",
-    tags: ["React Native", "GraphQL", "Redux", "Node.js"],
-    icon: Smartphone,
-    color: "from-sky-500/20 to-sky-600/5",
-    border: "border-sky-500/20",
-    iconColor: "text-sky-400",
+    num: "02",
+    posterText: "FIELD\nOPS",
+    title: "Field Operations Mobile App",
+    company: "Emaar Properties · Dubai",
+    year: "2025",
+    context:
+      "Cross-platform React Native app powering on-site inspections, invoice tracking, and Permit-to-Work workflows for Emaar's construction and community teams.",
+    challenge:
+      "Field workers were on partial-signal sites with bursty connectivity. Real-time-only architectures broke. Paper backups defeated the point of digitizing.",
+    approach:
+      "Offline-first architecture — optimistic local writes, conflict-aware sync on reconnect, GraphQL subscriptions when bandwidth permits. Native camera integration for inspection evidence.",
+    impact: ["45% efficiency lift", "Zero data loss in field tests", "All three divisions"],
+    stack: ["React Native", "GraphQL", "Redux", "Offline Sync"],
     private: true,
-    metrics: ["45% Efficiency Gain", "Offline-First", "Real-Time Sync"],
   },
   {
-    title: "Veeva Vault Integration Platform",
-    company: "Veeva Systems (SaaS)",
-    description:
-      "Enterprise SaaS system for 500+ pharmaceutical clients integrating Veeva Vault with third-party clinical trial systems. Full FDA 21 CFR Part 11 compliance with 99.9% uptime SLA.",
-    tags: ["React", "Java Spring Boot", "Node.js", "PostgreSQL", "Redis", "Microservices"],
-    icon: Cpu,
-    color: "from-violet-500/20 to-violet-600/5",
-    border: "border-violet-500/20",
-    iconColor: "text-violet-400",
+    num: "03",
+    posterText: "VEEVA\nVAULT",
+    title: "Vault Clinical Integrations",
+    company: "Veeva Systems · London",
+    year: "2024 — 2025",
+    context:
+      "Enterprise SaaS modules bridging Veeva Vault with third-party clinical-trial systems for 500+ pharmaceutical clients — full FDA 21 CFR Part 11 compliance throughout.",
+    challenge:
+      "Pharma clients couldn't move trial data between systems without manual transfer — a multi-day delay per study. Every integration also had to satisfy a regulator who could shut down a trial for a missing audit trail.",
+    approach:
+      "REST and microservice integrations on Java Spring Boot with React control panels. Compliance baked in — immutable audit logs, role-aware access, replayable event streams. PostgreSQL tuning plus Redis caching for read-heavy paths.",
+    impact: ["500+ pharma clients", "99.9% uptime", "65% faster processing", "40% throughput boost"],
+    stack: ["React", "Java Spring Boot", "Node.js", "PostgreSQL", "Redis"],
     private: true,
-    metrics: ["500+ Pharma Clients", "99.9% Uptime", "65% Faster Processing"],
   },
   {
-    title: "AR Restaurant Experience",
-    company: "Personal / Ongoing",
-    description:
-      "Augmented Reality platform for restaurants that turns QR codes into immersive 3D menu experiences. Customers scan a code and see food items in AR before ordering — bridging hospitality and spatial computing.",
-    tags: ["Unity", "ARKit", "ARCore", "C#", "QR Integration"],
-    icon: Cpu,
-    color: "from-pink-500/20 to-pink-600/5",
-    border: "border-pink-500/20",
-    iconColor: "text-pink-400",
+    num: "04",
+    posterText: "AR\nMENU",
+    title: "AR Restaurant Menu Platform",
+    company: "Freelance · MENA region",
+    year: "2020 — Present",
+    context:
+      "Augmented-reality menu that lets diners scan a QR code and view 3D models of dishes in real-world space. Used by restaurants across the Middle East and North Africa.",
+    challenge:
+      "Restaurants needed a marketing differentiator that didn't require a native app install. WebAR alone had compatibility gaps; native AR added friction. The bridge had to work on any phone with a camera.",
+    approach:
+      "Unity-built AR pipeline targeting ARKit and ARCore via per-platform builds, triggered by QR codes that link to lightweight installer flows. Asset pipeline optimized for sub-10MB downloads per dish.",
+    impact: ["Production with multiple MENA clients", "Higher menu engagement", "Five years continuous operation"],
+    stack: ["Unity", "ARKit", "ARCore", "C#"],
     private: false,
-    github: "https://github.com/andrewelalfy57",
-    metrics: ["3D AR Menus", "QR-Powered", "2020 – Present"],
+    href: "https://github.com/andrewelalfy57",
     featured: true,
   },
 ];
 
-function ProjectCard({ project, index }: { project: (typeof projects)[0]; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
+function ProjectBlock({ project, index }: { project: Project; index: number }) {
+  const reverse = index % 2 === 1;
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -6 }}
-      className={`relative glass rounded-2xl p-6 border ${project.border} bg-gradient-to-br ${project.color} transition-all hover:shadow-2xl hover:shadow-black/20 group`}
+    <motion.article
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+      transition={{ duration: 1, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+      className="py-16 md:py-24 border-t border-soft"
     >
-      {project.featured && (
-        <div className="absolute -top-3 right-6">
-          <span className="text-xs px-3 py-1 rounded-full bg-gradient-to-r from-[rgb(var(--accent))] to-[rgb(var(--accent-secondary))] text-white font-semibold">
-            Featured
-          </span>
+      <div
+        className={`grid md:grid-cols-12 gap-8 md:gap-12 items-start ${
+          reverse ? "md:[&>*:first-child]:order-2" : ""
+        }`}
+      >
+        {/* Poster — typographic visual, no images needed */}
+        <div className="md:col-span-5">
+          <div className="poster flex items-center justify-center">
+            <div className="absolute top-6 left-6 mono-label">{project.num}</div>
+            <div className="absolute top-6 right-6 mono-label">{project.year}</div>
+            <div className="display text-[clamp(3rem,8vw,7rem)] text-[rgb(var(--foreground))] text-center leading-[0.85] whitespace-pre-line">
+              {project.posterText}
+            </div>
+            <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4">
+              <div className="mono-label !text-[rgb(var(--foreground))]/60 truncate">
+                {project.company.split("·")[0]?.trim()}
+              </div>
+              {project.featured && (
+                <div className="mono-label !text-[rgb(var(--foreground))]">★ Featured</div>
+              )}
+            </div>
+          </div>
         </div>
-      )}
 
-      <div className="flex items-start justify-between mb-4">
-        <div
-          className={`w-12 h-12 rounded-xl bg-[rgb(var(--card))]/50 flex items-center justify-center ${project.iconColor}`}
-        >
-          <project.icon size={22} />
-        </div>
-        <div className="flex items-center gap-2">
-          {project.private ? (
-            <span className="flex items-center gap-1 text-xs text-[rgb(var(--muted))]">
-              <Lock size={11} />
-              Private
-            </span>
-          ) : project.github ? (
-              <motion.a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1 }}
-              className="p-2 rounded-full glass text-[rgb(var(--muted))] hover:text-[rgb(var(--foreground))] transition-colors"
-            >
-              <GithubIcon size={16} />
-            </motion.a>
-          ) : null}
+        {/* Content */}
+        <div className="md:col-span-7 space-y-6">
+          <div>
+            <div className="mono-label mb-3">{project.company}</div>
+            <h3 className="display-tight text-[clamp(1.75rem,4vw,3rem)] leading-tight">
+              {project.title}
+            </h3>
+          </div>
+
+          <p className="text-base md:text-lg leading-[1.6] text-[rgb(var(--muted))] max-w-2xl">
+            {project.context}
+          </p>
+
+          <div className="grid sm:grid-cols-2 gap-x-10 gap-y-6 pt-2 max-w-2xl">
+            <div>
+              <div className="mono-label mb-2">Challenge</div>
+              <p className="text-sm leading-relaxed text-[rgb(var(--muted))]">
+                {project.challenge}
+              </p>
+            </div>
+            <div>
+              <div className="mono-label mb-2">Approach</div>
+              <p className="text-sm leading-relaxed text-[rgb(var(--muted))]">
+                {project.approach}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div className="mono-label mb-3">Impact</div>
+            <div className="flex flex-wrap gap-x-6 gap-y-2">
+              {project.impact.map((m) => (
+                <div
+                  key={m}
+                  className="text-sm text-[rgb(var(--foreground))] flex items-baseline gap-2"
+                >
+                  <span className="text-[rgb(var(--foreground))]/40">—</span>
+                  {m}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-2 pt-2 items-center">
+            {project.stack.map((t) => (
+              <span
+                key={t}
+                className="text-xs font-mono px-2.5 py-1 rounded-full border border-mid text-[rgb(var(--muted))]"
+              >
+                {t}
+              </span>
+            ))}
+            {project.private ? (
+              <span className="mono-label ml-auto">Private · NDA</span>
+            ) : (
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-auto text-link text-sm !text-[rgb(var(--foreground))]"
+              >
+                View source <span aria-hidden>→</span>
+              </a>
+            )}
+          </div>
         </div>
       </div>
-
-      <div className="mb-1 text-xs font-mono text-[rgb(var(--muted))]">{project.company}</div>
-      <h3 className="text-lg font-bold mb-3">{project.title}</h3>
-      <p className="text-sm text-[rgb(var(--muted))] leading-relaxed mb-4">{project.description}</p>
-
-      {/* Metrics */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        {project.metrics.map((m) => (
-          <span
-            key={m}
-            className="text-xs px-2 py-1 rounded-md bg-[rgb(var(--card))]/60 font-mono text-[rgb(var(--foreground))]/70"
-          >
-            {m}
-          </span>
-        ))}
-      </div>
-
-      {/* Tags */}
-      <div className="flex flex-wrap gap-1.5">
-        {project.tags.map((tag) => (
-          <span
-            key={tag}
-            className="text-xs px-2 py-0.5 rounded-full text-[rgb(var(--muted))] border border-[rgb(var(--border))]/50"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-    </motion.div>
+    </motion.article>
   );
 }
 
 export default function Projects() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true });
-
   return (
-    <section id="projects" className="section-padding">
+    <section id="projects" className="section-padding border-t border-soft">
       <div className="max-container">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="flex items-center gap-4 mb-6"
-        >
-          <span className="font-mono text-sm text-[rgb(var(--accent-light))] tracking-widest">
-            04.
-          </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Projects</h2>
-          <div className="flex-1 h-px bg-[rgb(var(--border))]" />
-        </motion.div>
+        <div className="mb-12 flex items-end justify-between gap-8 flex-wrap">
+          <FadeUp>
+            <div className="mono-label mb-6">— Selected work</div>
+            <h2 className="display text-[clamp(2.5rem,7vw,7rem)] max-w-3xl">
+              Most of it&apos;s under NDA.
+            </h2>
+            <h2 className="display text-[clamp(2.5rem,7vw,7rem)] text-[rgb(var(--muted))] max-w-3xl">
+              Here&apos;s what I can show.
+            </h2>
+          </FadeUp>
+          <FadeUp delay={0.12}>
+            <p className="text-sm text-[rgb(var(--muted))] max-w-xs">
+              Enterprise systems built across Dubai, London, and Cairo — plus a five-year AR side project running across the MENA region.
+            </p>
+          </FadeUp>
+        </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-[rgb(var(--muted))] mb-12 max-w-lg"
-        >
-          Most of my work is enterprise-grade and under NDA. Here&apos;s an overview of key
-          systems I&apos;ve built, with publicly available work where possible.
-        </motion.p>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, i) => (
-            <ProjectCard key={project.title} project={project} index={i} />
+        <div>
+          {projects.map((p, i) => (
+            <ProjectBlock key={p.title} project={p} index={i} />
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="mt-10 text-center"
-        >
+        <FadeUp delay={0.1} className="pt-12 flex justify-end">
           <a
             href="https://github.com/andrewelalfy57"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-[rgb(var(--muted))] hover:text-[rgb(var(--accent-light))] transition-colors font-mono text-sm group"
+            className="text-link text-sm !text-[rgb(var(--foreground))]"
           >
-          <GithubIcon size={16} />
-          View GitHub Profile
-            <ExternalLink size={12} className="group-hover:translate-x-0.5 transition-transform" />
+            All public work on GitHub <span aria-hidden>→</span>
           </a>
-        </motion.div>
+        </FadeUp>
       </div>
     </section>
   );

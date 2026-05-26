@@ -1,155 +1,169 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Code2, Cpu, Globe, Zap } from "lucide-react";
+import Image from "next/image";
+import FadeUp from "./FadeUp";
 
 const stats = [
-  { value: "5+", label: "Years Experience" },
-  { value: "10K+", label: "Users Served" },
-  { value: "20+", label: "Projects Shipped" },
-  { value: "99.9%", label: "Uptime Delivered" },
+  { value: 4, suffix: "+", label: "Years building production software" },
+  { value: 10, suffix: "K+", label: "Daily active users I've shipped to" },
+  { value: 5, suffix: "", label: "Enterprise apps shipped at Emaar" },
+  { value: 99.9, suffix: "%", label: "Uptime on FDA-compliant SaaS", decimals: 1 },
 ];
 
-const highlights = [
-  {
-    icon: Code2,
-    title: "Enterprise Scale",
-    desc: "Built systems serving 10K+ users across UAE, UK, and Egypt",
-  },
-  {
-    icon: Globe,
-    title: "Full-Stack Mastery",
-    desc: "From React & Next.js frontends to Node.js & Java Spring Boot backends",
-  },
-  {
-    icon: Cpu,
-    title: "Mobile & AR",
-    desc: "React Native apps and Augmented Reality experiences for real-world impact",
-  },
-  {
-    icon: Zap,
-    title: "Performance Obsessed",
-    desc: "60% data fetching reduction, 40% performance gains — metrics matter",
-  },
-];
-
-function FadeIn({
-  children,
-  delay = 0,
-  className = "",
+function Counter({
+  to,
+  suffix = "",
+  decimals = 0,
 }: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
+  to: number;
+  suffix?: string;
+  decimals?: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "0px 0px -20% 0px" });
+  const [n, setN] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    const duration = 1800;
+    const start = performance.now();
+    let raf = 0;
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setN(to * eased);
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, to]);
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
+    <span ref={ref}>
+      {n.toFixed(decimals)}
+      {suffix}
+    </span>
   );
 }
 
-export { FadeIn };
-
 export default function About() {
   return (
-    <section id="about" className="section-padding mesh-gradient">
+    <section id="about" className="section-padding border-t border-soft">
       <div className="max-container">
-        <FadeIn>
-          <div className="flex items-center gap-4 mb-16">
-            <span className="font-mono text-sm text-[rgb(var(--accent-light))] tracking-widest">
-              01.
-            </span>
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-              About Me
-            </h2>
-            <div className="flex-1 h-px bg-[rgb(var(--border))]" />
-          </div>
-        </FadeIn>
+        {/* Eyebrow — single small label, no number prefix */}
+        <FadeUp className="mb-16">
+          <div className="mono-label">— About</div>
+        </FadeUp>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-          <div className="space-y-6">
-            <FadeIn delay={0.1}>
-              <p className="text-lg leading-relaxed text-[rgb(var(--muted))]">
-                I&apos;m a{" "}
-                <span className="text-[rgb(var(--foreground))] font-semibold">
-                  Senior Software Engineer
-                </span>{" "}
-                currently at{" "}
-                <span className="text-gradient font-semibold">Emaar, Dubai</span>, where I
-                build enterprise web and mobile applications that streamline operations for
-                tens of thousands of users.
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-base leading-relaxed text-[rgb(var(--muted))]">
-                I graduated with a B.Sc. in Computer Science Engineering from the{" "}
-                <span className="text-[rgb(var(--foreground))]">
-                  German University in Cairo
-                </span>{" "}
-                and have since worked across three continents — building pharma SaaS at Veeva
-                Systems in London, optimizing databases in Dubai, and pioneering AR experiences
-                for the restaurant industry.
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.3}>
-              <p className="text-base leading-relaxed text-[rgb(var(--muted))]">
-                I speak Arabic, English, and German (B1), and I thrive in cross-functional,
-                globally distributed teams. I believe in writing code that&apos;s fast,
-                clean, and built to last.
-              </p>
-            </FadeIn>
+        {/* Big statement + identity block side by side */}
+        <div className="grid md:grid-cols-12 gap-10 md:gap-16 mb-20">
+          <div className="md:col-span-8">
+            <FadeUp>
+              <h2 className="display text-[clamp(2rem,5.5vw,5rem)] max-w-4xl">
+                I build software that ships, scales, and stays out of its own way.
+              </h2>
+            </FadeUp>
           </div>
 
-          {/* Stats */}
-          <FadeIn delay={0.2}>
-            <div className="grid grid-cols-2 gap-4">
-              {stats.map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 + 0.2 }}
-                  whileHover={{ scale: 1.03, y: -2 }}
-                  className="glass rounded-2xl p-6 border border-[rgb(var(--border))]/50 hover:border-[rgb(var(--accent))]/30 transition-all"
-                >
-                  <div className="text-3xl font-extrabold text-gradient mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-[rgb(var(--muted))]">{stat.label}</div>
-                </motion.div>
-              ))}
+          {/* Portrait — large circular */}
+          <FadeUp delay={0.1} className="md:col-span-4">
+            <div className="relative aspect-square rounded-full overflow-hidden border border-mid">
+              <Image
+                src="/andrew.jpg"
+                alt="Andrew Ayman Alfy"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ objectFit: "cover", objectPosition: "50% 22%" }}
+              />
+              <div className="absolute inset-0 ring-1 ring-inset ring-[rgb(var(--foreground))]/10 rounded-full pointer-events-none" />
+              {/* Floating caption pill */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-[rgb(var(--background))]/85 backdrop-blur border border-mid mono-label">
+                Andrew · Dubai
+              </div>
             </div>
-          </FadeIn>
+          </FadeUp>
         </div>
 
-        {/* Highlights */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {highlights.map((item, i) => (
-            <FadeIn key={item.title} delay={i * 0.1}>
-              <motion.div
-                whileHover={{ y: -4 }}
-                className="glass rounded-2xl p-6 border border-[rgb(var(--border))]/40 hover:border-[rgb(var(--accent))]/30 transition-all group"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[rgb(var(--accent))]/10 flex items-center justify-center mb-4 group-hover:bg-[rgb(var(--accent))]/20 transition-colors">
-                  <item.icon size={20} className="text-[rgb(var(--accent-light))]" />
-                </div>
-                <h3 className="font-bold mb-2">{item.title}</h3>
-                <p className="text-sm text-[rgb(var(--muted))] leading-relaxed">{item.desc}</p>
-              </motion.div>
-            </FadeIn>
+        {/* Prose */}
+        <div className="grid md:grid-cols-12 gap-10 mb-20">
+          <FadeUp className="md:col-span-6 md:col-start-1">
+            <p className="text-base md:text-lg leading-[1.7] text-[rgb(var(--muted))]">
+              <span className="text-[rgb(var(--foreground))]">Born and raised in Egypt</span>,
+              trained in Germany&apos;s engineering tradition at the German University in
+              Cairo, and now writing software in Dubai. The last four years have taken me
+              from media-agency work in Cairo, through database engineering in Dubai,
+              into FDA-grade pharma SaaS at Veeva in London, and — currently — into Emaar
+              Properties, where I lead full-stack work across the Hotels, Communities, and
+              Construction divisions.
+            </p>
+          </FadeUp>
+          <FadeUp delay={0.1} className="md:col-span-6">
+            <p className="text-base md:text-lg leading-[1.7] text-[rgb(var(--muted))]">
+              I work end-to-end and prefer it that way.{" "}
+              <span className="text-[rgb(var(--foreground))]">Next.js (App Router)</span> and
+              React Native on the front. <span className="text-[rgb(var(--foreground))]">
+              Node.js, Java Spring Boot, GraphQL</span> in the middle.{" "}
+              <span className="text-[rgb(var(--foreground))]">PostgreSQL and Redis</span> at
+              the bottom. Delivered through GitHub Actions, Docker, AWS. Production
+              first, abstractions later, and I optimize hard only when profilers say to.
+            </p>
+          </FadeUp>
+        </div>
+
+        {/* Bio facts — different layout from prose: tabular */}
+        <div className="grid md:grid-cols-3 gap-y-10 gap-x-12 py-10 border-y border-mid mb-20">
+          <FadeUp>
+            <div className="mono-label mb-3">Education</div>
+            <div className="font-semibold mb-1">B.Sc. Computer Science Engineering</div>
+            <div className="text-sm text-[rgb(var(--muted))]">
+              German University in Cairo · 2016&nbsp;–&nbsp;2021
+            </div>
+            <div className="text-sm text-[rgb(var(--muted))] mt-1">
+              Grade 1.6 / 5.0 (near Excellent) · Pre-Masters Track
+            </div>
+          </FadeUp>
+          <FadeUp delay={0.08}>
+            <div className="mono-label mb-3">Languages</div>
+            <div className="space-y-1.5">
+              <div className="flex items-baseline justify-between">
+                <span className="font-medium">Arabic</span>
+                <span className="text-sm text-[rgb(var(--muted))]">Native</span>
+              </div>
+              <div className="flex items-baseline justify-between">
+                <span className="font-medium">English</span>
+                <span className="text-sm text-[rgb(var(--muted))]">Bilingual</span>
+              </div>
+              <div className="flex items-baseline justify-between">
+                <span className="font-medium">German</span>
+                <span className="text-sm text-[rgb(var(--muted))]">B1</span>
+              </div>
+            </div>
+          </FadeUp>
+          <FadeUp delay={0.16}>
+            <div className="mono-label mb-3">Currently</div>
+            <div className="font-semibold mb-1">Senior Software Engineer</div>
+            <div className="text-sm text-[rgb(var(--muted))]">
+              Emaar Properties · Dubai
+            </div>
+            <div className="text-sm text-[rgb(var(--muted))] mt-1">
+              Hotels · Communities · Construction
+            </div>
+          </FadeUp>
+        </div>
+
+        {/* Stats — full-width row, big numbers */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8">
+          {stats.map((s, i) => (
+            <FadeUp key={s.label} delay={i * 0.06}>
+              <div className="display text-[clamp(2.75rem,6vw,5.5rem)] leading-none mb-3">
+                <Counter to={s.value} suffix={s.suffix} decimals={s.decimals ?? 0} />
+              </div>
+              <div className="text-xs text-[rgb(var(--muted))] leading-snug max-w-[20ch]">
+                {s.label}
+              </div>
+            </FadeUp>
           ))}
         </div>
       </div>
