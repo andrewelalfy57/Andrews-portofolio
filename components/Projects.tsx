@@ -23,11 +23,11 @@ const projects: Project[] = [
   {
     num: "01",
     posterText: "LUXURY\nBRANDS",
-    title: "Address & Armani Hotels — Brand Portals",
+    title: "Address & Armani Hotels Brand Portals",
     company: "Emaar Hospitality Group · Dubai",
     year: "2025",
     context:
-      "Flagship consumer websites for Emaar Hospitality Group's two luxury brands — Address Hotels and Armani Hotels. Led full-stack development end-to-end, from architecture and code to direct coordination with business stakeholders. Also led the Emaar Entertainment Group website as Senior Developer, coordinating delivery and gating releases through code review and QA.",
+      "Flagship consumer websites for Emaar Hospitality Group's two luxury brands Address Hotels and Armani Hotels. Led full-stack development end-to-end, from architecture and code to direct coordination with business stakeholders. Also led the Emaar Entertainment Group website as Senior Developer, coordinating delivery and gating releases through code review and QA.",
     challenge:
       "Global luxury-brand audiences expect instant, multilingual, image-heavy experiences with no compromise on performance, SEO, or brand consistency. Booking flows had to feel as polished as the property itself, and every release had to be defensible to business stakeholders before going live.",
     approach:
@@ -40,15 +40,15 @@ const projects: Project[] = [
   {
     num: "02",
     posterText: "EMAAR\nSUITE",
-    title: "Emaar Internal Suite — Hawkeye, Omni & Entertainment",
+    title: "Emaar Internal Suite Hawkeye, Omni & Entertainment",
     company: "Emaar Properties · Dubai",
     year: "2025",
     context:
-      "Enterprise platforms running Emaar from the inside, used daily by 10,000+ employees: Hawkeye — PowerBI-embedded analytics with BU-targeted push notifications and Emaar Mind, an in-app AI assistant; Omni Workflows — invoice approvals (CPA / RCPA) and employee operations; Omni Social — internal social network with feed, groups, posts, birthdays, requests and approvals, and Emaar news; and the Emaar Entertainment platform powering Dubai's most-visited attractions (Burj Khalifa At The Top, Dubai Aquarium, Dubai Ice Rink).",
+      "Enterprise platforms running Emaar from the inside, used daily by 10,000+ employees: Hawkeye PowerBI-embedded analytics with BU-targeted push notifications and Emaar Mind, an in-app AI assistant; Omni Workflows invoice approvals (CPA / RCPA) and employee operations; Omni Social internal social network with feed, groups, posts, birthdays, requests and approvals, and Emaar news; and the Emaar Entertainment platform powering Dubai's most-visited attractions (Burj Khalifa At The Top, Dubai Aquarium, Dubai Ice Rink).",
     challenge:
       "Four very different audiences, one identity layer. Finance needed dashboards and audit-clean approval chains. Ops needed CPA/RCPA invoice flows that didn't break under load. 10,000+ employees needed a social product that didn't feel like a 2008 corporate intranet. And the entertainment business needed software fast enough to run ticketing and operations at attractions visited by millions a year.",
     approach:
-      "Next.js (App Router) front-ends over GraphQL, served from tuned PostgreSQL and Strapi CMS — shared design system, role-aware access, server components for data-heavy views. PowerBI embedded inside Hawkeye, BU-targeted notification routing, and an integrated AI layer (Emaar Mind) giving staff conversational access to their dashboards.",
+      "Next.js (App Router) front-ends over GraphQL, served from tuned PostgreSQL and Strapi CMS shared design system, role-aware access, server components for data-heavy views. PowerBI embedded inside Hawkeye, BU-targeted notification routing, and an integrated AI layer (Emaar Mind) giving staff conversational access to their dashboards.",
     impact: ["10,000+ daily users", "60% lower fetch latency", "20% ahead of sprint", "85%+ coverage"],
     stack: ["Next.js", "GraphQL", "TypeScript", "PostgreSQL", "Strapi", "PowerBI", "AI"],
     private: true,
@@ -64,7 +64,7 @@ const projects: Project[] = [
     challenge:
       "Field workers were on partial-signal sites with bursty connectivity. Real-time-only architectures broke. Paper backups defeated the point of digitizing.",
     approach:
-      "Offline-first architecture — optimistic local writes, conflict-aware sync on reconnect, GraphQL subscriptions when bandwidth permits. Native camera integration for inspection evidence.",
+      "Offline-first architecture optimistic local writes, conflict-aware sync on reconnect, GraphQL subscriptions when bandwidth permits. Native camera integration for inspection evidence.",
     impact: ["45% efficiency lift", "Zero data loss in field tests", "Deployed across Emaar properties"],
     stack: ["React Native", "GraphQL", "Redux", "Offline Sync"],
     private: true,
@@ -74,13 +74,13 @@ const projects: Project[] = [
     posterText: "VEEVA\nHCP",
     title: "Veeva Network / OpenData + Vault",
     company: "Veeva Systems · London",
-    year: "2024 — 2025",
+    year: "2024 - 2025",
     context:
-      "Contributed to Veeva Network / OpenData — a global Healthcare Professional (HCP) data platform tracking physicians worldwide (specialties, credentials, affiliations, current/historical work locations) — and to Veeva Vault, the regulated content-management platform used by 500+ pharma clients under FDA 21 CFR Part 11.",
+      "Contributed to Veeva Network / OpenData a global Healthcare Professional (HCP) data platform tracking physicians worldwide (specialties, credentials, affiliations, current/historical work locations) and to Veeva Vault, the regulated content-management platform used by 500+ pharma clients under FDA 21 CFR Part 11.",
     challenge:
-      "Two distinct, regulated worlds. The HCP platform had to keep millions of physician records accurate and queryable globally. Vault had to bridge audit-grade document workflows with third-party clinical-trial systems — every integration defensible to regulators.",
+      "Two distinct, regulated worlds. The HCP platform had to keep millions of physician records accurate and queryable globally. Vault had to bridge audit-grade document workflows with third-party clinical-trial systems every integration defensible to regulators.",
     approach:
-      "REST APIs and microservices on Java Spring Boot with React control panels. Compliance baked in — immutable audit logs, role-aware access, replayable event streams. PostgreSQL tuning plus Redis caching for read-heavy HCP queries.",
+      "REST APIs and microservices on Java Spring Boot with React control panels. Compliance baked in immutable audit logs, role-aware access, replayable event streams. PostgreSQL tuning plus Redis caching for read-heavy HCP queries.",
     impact: ["500+ pharma clients", "99.9% uptime", "65% faster processing", "40% throughput boost"],
     stack: ["React", "Java Spring Boot", "Node.js", "PostgreSQL", "Redis"],
     private: true,
@@ -90,7 +90,7 @@ const projects: Project[] = [
     posterText: "AR\nMENU",
     title: "AR Restaurant Menu Platform",
     company: "Freelance · MENA region",
-    year: "2020 — Present",
+    year: "2020 - Present",
     context:
       "Augmented-reality menu that lets diners scan a QR code and view 3D models of dishes in real-world space. Used by restaurants across the Middle East and North Africa.",
     challenge:
@@ -116,9 +116,8 @@ function ProjectBlock({ project, index }: { project: Project; index: number }) {
       className="py-16 md:py-24 border-t border-soft"
     >
       <div
-        className={`grid md:grid-cols-12 gap-8 md:gap-12 items-start ${
-          reverse ? "md:[&>*:first-child]:order-2" : ""
-        }`}
+        className={`grid md:grid-cols-12 gap-8 md:gap-12 items-start ${reverse ? "md:[&>*:first-child]:order-2" : ""
+          }`}
       >
         {/* Poster — typographic visual, no images needed */}
         <div className="md:col-span-5">
@@ -175,7 +174,7 @@ function ProjectBlock({ project, index }: { project: Project; index: number }) {
                   key={m}
                   className="text-sm text-[rgb(var(--foreground))] flex items-baseline gap-2"
                 >
-                  <span className="text-[rgb(var(--foreground))]/40">—</span>
+                  <span className="text-[rgb(var(--foreground))]/40">-</span>
                   {m}
                 </div>
               ))}
@@ -216,7 +215,7 @@ export default function Projects() {
       <div className="max-container">
         <div className="mb-12 flex items-end justify-between gap-8 flex-wrap">
           <FadeUp>
-            <div className="mono-label mb-6">— Selected work</div>
+            <div className="mono-label mb-6">Selected work</div>
             <h2 className="display text-[clamp(2.5rem,7vw,7rem)] max-w-3xl">
               Most of it&apos;s under NDA.
             </h2>
@@ -226,7 +225,7 @@ export default function Projects() {
           </FadeUp>
           <FadeUp delay={0.12}>
             <p className="text-sm text-[rgb(var(--muted))] max-w-xs">
-              Enterprise systems built across Dubai, London, and Cairo — plus a five-year AR side project running across the MENA region.
+              Enterprise systems built across Dubai, London, and Cairo plus a five-year AR side project running across the MENA region.
             </p>
           </FadeUp>
         </div>

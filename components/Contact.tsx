@@ -40,7 +40,7 @@ export default function Contact() {
     <section id="contact" className="section-padding border-t border-soft">
       <div className="max-container">
         <FadeUp className="mb-10">
-          <div className="mono-label">— Contact</div>
+          <div className="mono-label">Contact</div>
         </FadeUp>
 
         {/* Dominant headline + Dubai circular accent */}
@@ -72,7 +72,7 @@ export default function Contact() {
         {/* Subline */}
         <FadeUp delay={0.1} className="mb-20">
           <p className="text-lg md:text-xl text-[rgb(var(--muted))] max-w-2xl leading-[1.5]">
-            Hiring a senior engineer, scoping an enterprise app, or comparing notes on GraphQL performance — my inbox is open. I read every message and respond within 48 hours.
+            Hiring a senior engineer, scoping an enterprise app, or comparing notes on GraphQL performance my inbox is open. I read every message and respond within 48 hours.
           </p>
         </FadeUp>
 
@@ -192,7 +192,7 @@ export default function Contact() {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                     >
-                      Something went wrong — try again
+                      Something went wrong try again
                     </motion.span>
                   )}
                 </AnimatePresence>

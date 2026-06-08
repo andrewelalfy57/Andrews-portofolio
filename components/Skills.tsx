@@ -36,7 +36,7 @@ export default function Skills() {
       <div className="max-container">
         {/* Eyebrow */}
         <FadeUp className="mb-16">
-          <div className="mono-label">— Stack</div>
+          <div className="mono-label">Stack</div>
         </FadeUp>
 
         {/* Poster-style headline + image accent */}
@@ -89,7 +89,7 @@ export default function Skills() {
         {/* Footer line — a single emphatic stat */}
         <FadeUp delay={0.2} className="mt-16 pt-10 border-t border-soft">
           <p className="text-base md:text-lg text-[rgb(var(--muted))] max-w-3xl">
-            Every tool above has earned its place in production — not on a résumé. I optimize for what scales, what stays maintainable, and what the team behind me can ship without my help.
+            Every tool above has earned its place in production not on a résumé. I optimize for what scales, what stays maintainable, and what the team behind me can ship without my help.
           </p>
         </FadeUp>
       </div>

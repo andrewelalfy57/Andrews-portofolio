@@ -18,7 +18,7 @@ export default function Footer() {
         <div className="flex items-center gap-6 md:gap-10 mb-12 flex-wrap">
           <div className="relative w-16 h-16 md:w-24 md:h-24 rounded-full overflow-hidden border border-mid flex-shrink-0">
             <Image
-              src="/andrew1.png"
+              src="/andrew.png"
               alt="Andrew Ayman Alfy"
               fill
               sizes="96px"

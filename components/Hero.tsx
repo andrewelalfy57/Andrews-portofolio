@@ -86,7 +86,7 @@ export default function Hero() {
           <p className="md:col-span-7 text-lg md:text-xl leading-[1.45] text-[rgb(var(--foreground))] max-w-2xl">
             Senior Software Engineer based in Dubai. Currently at{" "}
             <span className="text-[rgb(var(--foreground))] font-semibold">Emaar Properties</span>{" "}
-            — leading full-stack work on the{" "}
+            leading full-stack work on the{" "}
             <span className="text-[rgb(var(--foreground))] font-semibold">Address Hotels</span>,{" "}
             <span className="text-[rgb(var(--foreground))] font-semibold">Armani Hotels</span>, and{" "}
             <span className="text-[rgb(var(--foreground))] font-semibold">Emaar Entertainment Group</span>{" "}

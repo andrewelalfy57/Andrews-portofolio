@@ -18,9 +18,9 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Andrew Alalfy — Senior Software Engineer",
+  title: "Andrew Alalfy | Senior Software Engineer",
   description:
-    "Senior Software Engineer at Emaar, Dubai. 4+ years building enterprise web and mobile apps across real-estate, life-sciences, and SaaS — Next.js, React Native, GraphQL.",
+    "Senior Software Engineer at Emaar, Dubai. 4+ years building enterprise web and mobile apps across real-estate, life-sciences, and Next.js, React Native, GraphQL.",
   keywords: [
     "Andrew Alalfy",
     "Andrew Ayman Alfy",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     "Veeva",
   ],
   openGraph: {
-    title: "Andrew Alalfy — Senior Software Engineer",
+    title: "Andrew Alalfy | Senior Software Engineer",
     description:
       "Senior Software Engineer at Emaar, Dubai. Building enterprise systems serving 10,000+ users.",
     url: "https://andrewelalfy.com",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Andrew Alalfy — Senior Software Engineer",
+    title: "Andrew Alalfy | Senior Software Engineer",
     description: "Building enterprise systems serving 10,000+ users from Dubai.",
   },
   robots: {
