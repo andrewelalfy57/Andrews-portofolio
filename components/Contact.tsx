@@ -1,12 +1,13 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
+import emailjs from "@emailjs/browser";
 import FadeUp from "./FadeUp";
 
 const channels = [
-  { label: "Email", value: "andrew78041@gmail.com", href: "mailto:andrew78041@gmail.com" },
+  { label: "Email", value: "andrewelalfy@gmail.com", href: "mailto:andrewelalfy@gmail.com" },
   { label: "Phone", value: "+971 50 198 2257", href: "tel:+971501982257" },
   { label: "LinkedIn", value: "andrew-alalfy", href: "https://linkedin.com/in/andrew-alalfy/" },
   { label: "GitHub", value: "andrewelalfy57", href: "https://github.com/andrewelalfy57" },
@@ -17,6 +18,7 @@ type FormState = "idle" | "sending" | "success" | "error";
 export default function Contact() {
   const [formState, setFormState] = useState<FormState>("idle");
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -25,12 +27,27 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormState("sending");
-    await new Promise((r) => setTimeout(r, 1500));
-    setFormState("success");
-    setTimeout(() => {
-      setFormState("idle");
-      setForm({ name: "", email: "", subject: "", message: "" });
-    }, 4000);
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          name: form.name,
+          email: form.email,
+          title: form.subject,
+          message: form.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+      setFormState("success");
+      setTimeout(() => {
+        setFormState("idle");
+        setForm({ name: "", email: "", subject: "", message: "" });
+      }, 4000);
+    } catch {
+      setFormState("error");
+      setTimeout(() => setFormState("idle"), 4000);
+    }
   };
 
   const inputClass =
@@ -99,6 +116,7 @@ export default function Contact() {
           </div>
 
           <motion.form
+            ref={formRef}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "0px 0px -10% 0px" }}

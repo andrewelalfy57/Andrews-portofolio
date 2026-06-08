@@ -5,7 +5,7 @@ import Image from "next/image";
 const socials = [
   { label: "GitHub", href: "https://github.com/andrewelalfy57" },
   { label: "LinkedIn", href: "https://linkedin.com/in/andrew-alalfy/" },
-  { label: "Email", href: "mailto:andrew78041@gmail.com" },
+  { label: "Email", href: "mailto:andrewelalfy@gmail.com" },
 ];
 
 export default function Footer() {
