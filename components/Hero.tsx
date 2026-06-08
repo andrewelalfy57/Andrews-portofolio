@@ -40,7 +40,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Name + Portrait side by side */}
-        <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center mb-14">
+        <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start mb-14">
           <div className="md:col-span-9 order-2 md:order-1">
             <h1 className="display text-[clamp(3rem,13vw,13rem)] -ml-1">
               <RevealText as="span" className="block">
@@ -57,14 +57,14 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="md:col-span-3 order-1 md:order-2 flex justify-center md:justify-end"
+            className="md:col-span-3 order-1 md:order-2 flex justify-center md:justify-end -translate-y-4 md:-translate-y-14 lg:-translate-y-16 mb-6 md:mb-0"
           >
             <motion.div
               style={{ scale: portraitScale }}
-              className="relative w-44 h-44 sm:w-52 sm:h-52 md:w-full md:max-w-[280px] md:aspect-square rounded-full overflow-hidden border border-mid"
+              className="relative w-44 sm:w-52 md:w-full md:max-w-[280px] aspect-square rounded-full overflow-hidden border border-mid shrink-0"
             >
               <Image
-                src="/andrew.jpg"
+                src="/andrew.png"
                 alt="Andrew Ayman Alfy"
                 fill
                 priority
@@ -86,7 +86,11 @@ export default function Hero() {
           <p className="md:col-span-7 text-lg md:text-xl leading-[1.45] text-[rgb(var(--foreground))] max-w-2xl">
             Senior Software Engineer based in Dubai. Currently at{" "}
             <span className="text-[rgb(var(--foreground))] font-semibold">Emaar Properties</span>{" "}
-            — shipping the systems that 10,000 employees use to run hotels, communities, and construction.
+            — leading full-stack work on the{" "}
+            <span className="text-[rgb(var(--foreground))] font-semibold">Address Hotels</span>,{" "}
+            <span className="text-[rgb(var(--foreground))] font-semibold">Armani Hotels</span>, and{" "}
+            <span className="text-[rgb(var(--foreground))] font-semibold">Emaar Entertainment Group</span>{" "}
+            websites, plus the internal systems 10,000+ employees use every day.
           </p>
 
           <div className="md:col-span-5 md:justify-self-end flex flex-wrap items-center gap-x-10 gap-y-4">

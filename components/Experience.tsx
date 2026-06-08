@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import FadeUp from "./FadeUp";
+import { useTheme } from "./ThemeProvider";
 
 const experiences = [
   {
@@ -12,15 +13,18 @@ const experiences = [
     location: "Dubai, UAE",
     period: "Apr 2025 — Present",
     current: true,
-    image: "/dubai.jpg",
+    image: "/emaarblack.webp",
+    imageLight: "/EMAAR.png",
+    imageFit: "contain" as const,
     summary:
-      "Hospitality & real-estate — Hotels, Communities, Construction divisions.",
+      "Address Hotels, Armani Hotels, Emaar Entertainment Group — luxury brand portals + enterprise platforms.",
     bullets: [
-      "Architected and shipped 5 enterprise full-stack applications on Next.js (App Router), TypeScript, React, and GraphQL — serving 10,000+ internal users across Hotels, Communities, and Construction teams.",
+      "Led full-stack development of the Address Hotels and Armani Hotels websites — flagship consumer portals for Emaar Hospitality Group's luxury brands — owning the project end-to-end from architecture and implementation to direct business-stakeholder coordination.",
+      "Led the Emaar Entertainment Group website as Senior Developer — translated business requirements into engineering tasks, coordinated delivery across the dev team, and gated all releases through code review and QA before go-live.",
+      "Architected and shipped 5 enterprise full-stack applications on Next.js (App Router), TypeScript, React, and GraphQL — serving 10,000+ internal users across Emaar's hospitality and entertainment divisions.",
       "Built cross-platform React Native mobile apps powering field operations (inspections, invoice tracking, Permit-to-Work) — improved on-site efficiency by 45% with offline-first sync and real-time data capture.",
-      "Designed GraphQL APIs over tuned PostgreSQL and MySQL — cut average data-fetch latency by 60% and unified Strapi CMS, internal microservices, and frontend clients.",
-      "Delivered consumer-facing portals and admin dashboards for premium hospitality brands (luxury hotel portals, F&B platforms, residential community apps) — strong focus on performance, accessibility, SEO.",
-      "Drove delivery in a 6-engineer Scrum team — consistently shipped 20% ahead of sprint commitments with >85% test coverage.",
+      "Designed GraphQL APIs over tuned PostgreSQL and MySQL — cut data-fetch latency by 60% and unified Strapi CMS, internal microservices, and frontend clients.",
+      "Led a focused 2-engineer team with full delivery ownership and direct stakeholder alignment — consistently shipped 20% ahead of sprint commitments with >85% test coverage.",
     ],
     stack: ["Next.js", "React Native", "GraphQL", "TypeScript", "PostgreSQL", "Strapi"],
   },
@@ -30,39 +34,42 @@ const experiences = [
     company: "Veeva Systems",
     location: "London, UK · Remote",
     period: "Oct 2024 — Apr 2025",
-    image: "/london.jpg",
-    summary: "Pharma SaaS for 500+ clinical-trial clients.",
+    image: "/london.png",
+    summary: "Global HCP data platform (Veeva Network / OpenData) + Veeva Vault — serving 500+ pharma clients.",
     bullets: [
-      "Built and deployed enterprise SaaS modules for 500+ pharmaceutical clients on React, Node.js, and Java Spring Boot — 99.9% uptime, full FDA 21 CFR Part 11 compliance.",
-      "Designed REST APIs and microservices integrating Veeva Vault with third-party clinical-trial systems — cut data-processing time by 65%.",
-      "Optimized PostgreSQL queries and introduced Redis caching — 40% throughput boost for 10,000+ life-sciences professionals.",
+      "Contributed to Veeva Network / OpenData — a global Healthcare Professional (HCP) data platform consolidating physician profiles worldwide (specialties, credentials, affiliations, current/historical work locations) used by pharma companies for compliant outreach, territory planning, and clinical-trial recruitment.",
+      "Engineered solutions on Veeva Vault — Veeva's regulated content-management platform — built document-workflow features, automated audit-ready record handling, and supported FDA 21 CFR Part 11 compliance.",
+      "Designed REST APIs and microservices integrating Veeva Vault and the HCP data platform with pharmaceutical CRM and clinical-trial systems — cut data-processing time by 65% for 500+ pharmaceutical clients.",
+      "Optimized PostgreSQL queries and introduced Redis caching — 40% throughput boost for 10,000+ life-sciences professionals with 99.9% uptime.",
       "Collaborated across 3 time zones in a distributed Agile team — delivered 20+ feature releases with zero critical production incidents.",
     ],
     stack: ["React", "Node.js", "Java Spring Boot", "PostgreSQL", "Redis"],
   },
   {
     year: "2024",
-    title: "Database Engineer",
+    title: "Database Engineer (Contract)",
     company: "ABGA Systems & Software",
     location: "Dubai, UAE · Remote",
     period: "Feb 2024 — Oct 2024",
-    image: "/dubai.jpg",
-    summary: "High-availability data infrastructure for mission-critical apps.",
+    textLogo: "ABGA",
+    summary: "Data infrastructure powering ABGA's CRDMS, Training Mgmt, Product Tracking, and Sales Force Monitor platforms.",
     bullets: [
-      "Designed and deployed high-availability MySQL and MongoDB schemas — maintained zero unplanned downtime across the engagement.",
-      "Optimized SQL queries, indexing, and aggregation pipelines — reduced query response time by ~40% across analytics workloads.",
-      "Implemented automated backup, replication, and Prometheus-driven monitoring — hardened data integrity and disaster-recovery posture.",
-      "Refactored data-access layers with backend engineers — eliminated N+1 patterns, improved API response times by ~30%.",
+      "Built and maintained database infrastructure for ABGA's enterprise product suite — including the Cross-Region Data Management System (CRDMS), a platform consolidating geographically distributed data from multiple regional offices into a single, queryable layer.",
+      "Designed MySQL and MongoDB schemas powering ABGA's Training Management, Product Tracking, and Sales Force Monitor platforms — modelled for multi-tenant isolation, multi-region replication, and audit traceability.",
+      "Tuned slow queries, added missing indexes, and eliminated N+1 access patterns across reporting and admin dashboards — turned timed-out workflows into ones that loaded in real time.",
+      "Set up automated backup, replication, and Prometheus-driven monitoring with alerting — surfaced data issues before customers reported them; partnered with backend devs across healthcare, e-commerce, and education clients.",
     ],
-    stack: ["MySQL", "MongoDB", "Prometheus", "Replication"],
+    stack: ["MySQL", "MongoDB", "Prometheus", "Multi-Region", "Replication"],
   },
   {
-    year: "2023",
+    year: "2022",
     title: "Full-Stack Developer",
     company: "Media Pan Arab FZE",
     location: "Cairo, Egypt",
-    period: "May 2023 — Nov 2023",
-    image: "/cairo.jpg",
+    period: "May 2022 — Nov 2022",
+    image: "/mediapan-dark.svg",
+    imageLight: "/mediapan.svg",
+    imageFit: "contain" as const,
     summary: "Production web apps for media and marketing clients.",
     bullets: [
       "Built full-stack web applications with React and Node.js / Express — delivered production features for media and marketing clients.",
@@ -75,6 +82,8 @@ const experiences = [
 ];
 
 export default function Experience() {
+  const { theme } = useTheme();
+
   return (
     <section id="experience" className="section-padding border-t border-soft">
       <div className="max-container">
@@ -102,21 +111,28 @@ export default function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "0px 0px -10% 0px" }}
               transition={{ duration: 1, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-              className={`grid md:grid-cols-12 gap-8 md:gap-12 py-14 ${
-                i !== 0 ? "border-t border-soft" : ""
-              }`}
+              className={`grid md:grid-cols-12 gap-8 md:gap-12 py-14 ${i !== 0 ? "border-t border-soft" : ""
+                }`}
             >
               {/* Year + circular city thumbnail as visual anchor */}
               <div className="md:col-span-3">
                 <div className="md:sticky md:top-32 flex md:block items-center gap-6">
-                  <div className="relative w-20 h-20 md:w-32 md:h-32 rounded-full overflow-hidden border border-mid flex-shrink-0 mb-0 md:mb-6">
-                    <Image
-                      src={exp.image}
-                      alt={exp.location}
-                      fill
-                      sizes="(max-width: 768px) 80px, 128px"
-                      style={{ objectFit: "cover" }}
-                    />
+                  <div className="relative w-20 h-20 md:w-32 md:h-32 rounded-full overflow-hidden border border-mid flex-shrink-0 mb-0 md:mb-6 flex items-center justify-center bg-[rgb(var(--background))]">
+                    {"textLogo" in exp && exp.textLogo ? (
+                      <span className="font-mono font-bold text-sm md:text-base tracking-widest text-[rgb(var(--foreground))]">
+                        {exp.textLogo}
+                      </span>
+                    ) : (
+                      <Image
+                        src={theme === "dark" ? (exp as { image: string }).image : ((exp as { imageLight?: string; image: string }).imageLight ?? (exp as { image: string }).image)}
+                        alt={exp.location}
+                        fill
+                        sizes="(max-width: 768px) 80px, 128px"
+                        style={{
+                          objectFit: "imageFit" in exp && (exp as { imageFit?: string }).imageFit ? (exp as { imageFit: "cover" | "contain" }).imageFit : "cover",
+                        }}
+                      />
+                    )}
                     <div className="absolute inset-0 ring-1 ring-inset ring-[rgb(var(--foreground))]/10 rounded-full pointer-events-none" />
                   </div>
                   <div>

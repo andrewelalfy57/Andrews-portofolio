@@ -71,7 +71,7 @@ export default function About() {
           <FadeUp delay={0.1} className="md:col-span-4">
             <div className="relative aspect-square rounded-full overflow-hidden border border-mid">
               <Image
-                src="/andrew.jpg"
+                src="/andrew1.png"
                 alt="Andrew Ayman Alfy"
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -93,10 +93,12 @@ export default function About() {
               <span className="text-[rgb(var(--foreground))]">Born and raised in Egypt</span>,
               trained in Germany&apos;s engineering tradition at the German University in
               Cairo, and now writing software in Dubai. The last four years have taken me
-              from media-agency work in Cairo, through database engineering in Dubai,
-              into FDA-grade pharma SaaS at Veeva in London, and — currently — into Emaar
-              Properties, where I lead full-stack work across the Hotels, Communities, and
-              Construction divisions.
+              from media-agency work in Cairo, through database engineering on ABGA&apos;s
+              Cross-Region Data Management platform, into FDA-grade pharma SaaS at Veeva
+              in London (Network / OpenData and Vault), and — currently — into Emaar
+              Properties, where I lead full-stack work on the{" "}
+              <span className="text-[rgb(var(--foreground))]">Address Hotels, Armani Hotels, and Emaar Entertainment Group</span>{" "}
+              websites alongside the internal platforms behind Emaar&apos;s hospitality and entertainment divisions.
             </p>
           </FadeUp>
           <FadeUp delay={0.1} className="md:col-span-6">
@@ -104,7 +106,7 @@ export default function About() {
               I work end-to-end and prefer it that way.{" "}
               <span className="text-[rgb(var(--foreground))]">Next.js (App Router)</span> and
               React Native on the front. <span className="text-[rgb(var(--foreground))]">
-              Node.js, Java Spring Boot, GraphQL</span> in the middle.{" "}
+                Node.js, Java Spring Boot, GraphQL</span> in the middle.{" "}
               <span className="text-[rgb(var(--foreground))]">PostgreSQL and Redis</span> at
               the bottom. Delivered through GitHub Actions, Docker, AWS. Production
               first, abstractions later, and I optimize hard only when profilers say to.
@@ -148,7 +150,7 @@ export default function About() {
               Emaar Properties · Dubai
             </div>
             <div className="text-sm text-[rgb(var(--muted))] mt-1">
-              Hotels · Communities · Construction
+              Hospitality · Entertainment · Luxury Brands
             </div>
           </FadeUp>
         </div>

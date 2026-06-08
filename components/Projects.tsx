@@ -22,54 +22,71 @@ type Project = {
 const projects: Project[] = [
   {
     num: "01",
-    posterText: "EMAAR",
-    title: "Emaar Internal Platform",
-    company: "Emaar Properties · Dubai",
+    posterText: "LUXURY\nBRANDS",
+    title: "Address & Armani Hotels — Brand Portals",
+    company: "Emaar Hospitality Group · Dubai",
     year: "2025",
     context:
-      "Five enterprise full-stack apps spanning Hotels, Communities, and Construction — the connective tissue between 10,000+ Emaar employees and their daily workflows.",
+      "Flagship consumer websites for Emaar Hospitality Group's two luxury brands — Address Hotels and Armani Hotels. Led full-stack development end-to-end, from architecture and code to direct coordination with business stakeholders. Also led the Emaar Entertainment Group website as Senior Developer, coordinating delivery and gating releases through code review and QA.",
     challenge:
-      "Legacy tools were siloed per division, slow on field devices, impossible to integrate. Field managers were keying data into spreadsheets while approvals routed through email.",
+      "Global luxury-brand audiences expect instant, multilingual, image-heavy experiences with no compromise on performance, SEO, or brand consistency. Booking flows had to feel as polished as the property itself, and every release had to be defensible to business stakeholders before going live.",
     approach:
-      "Next.js (App Router) front-ends backed by GraphQL, sourced from tuned PostgreSQL and Strapi CMS. Shared design system. Server components where data is heavy, client components only where interactivity demands it.",
-    impact: ["10,000+ daily users", "60% lower fetch latency", "20% ahead of sprint", "85%+ coverage"],
-    stack: ["Next.js", "GraphQL", "TypeScript", "PostgreSQL", "Strapi"],
+      "Next.js (App Router) with server components for the heavy hero galleries and content pages, client-side hydration only where it mattered. Strapi CMS for editorial control. Tight collaboration with brand and business owners to keep the visual language and tone authentic to each property.",
+    impact: ["Public-facing on Address & Armani brands", "Lead developer · 2-engineer team", "End-to-end ownership", "Tech-lead role on EEG site"],
+    stack: ["Next.js", "TypeScript", "GraphQL", "Strapi", "React"],
     private: true,
+    featured: true,
   },
   {
     num: "02",
+    posterText: "EMAAR\nSUITE",
+    title: "Emaar Internal Suite — Hawkeye, Omni & Entertainment",
+    company: "Emaar Properties · Dubai",
+    year: "2025",
+    context:
+      "Enterprise platforms running Emaar from the inside, used daily by 10,000+ employees: Hawkeye — PowerBI-embedded analytics with BU-targeted push notifications and Emaar Mind, an in-app AI assistant; Omni Workflows — invoice approvals (CPA / RCPA) and employee operations; Omni Social — internal social network with feed, groups, posts, birthdays, requests and approvals, and Emaar news; and the Emaar Entertainment platform powering Dubai's most-visited attractions (Burj Khalifa At The Top, Dubai Aquarium, Dubai Ice Rink).",
+    challenge:
+      "Four very different audiences, one identity layer. Finance needed dashboards and audit-clean approval chains. Ops needed CPA/RCPA invoice flows that didn't break under load. 10,000+ employees needed a social product that didn't feel like a 2008 corporate intranet. And the entertainment business needed software fast enough to run ticketing and operations at attractions visited by millions a year.",
+    approach:
+      "Next.js (App Router) front-ends over GraphQL, served from tuned PostgreSQL and Strapi CMS — shared design system, role-aware access, server components for data-heavy views. PowerBI embedded inside Hawkeye, BU-targeted notification routing, and an integrated AI layer (Emaar Mind) giving staff conversational access to their dashboards.",
+    impact: ["10,000+ daily users", "60% lower fetch latency", "20% ahead of sprint", "85%+ coverage"],
+    stack: ["Next.js", "GraphQL", "TypeScript", "PostgreSQL", "Strapi", "PowerBI", "AI"],
+    private: true,
+  },
+  {
+    num: "03",
     posterText: "FIELD\nOPS",
     title: "Field Operations Mobile App",
     company: "Emaar Properties · Dubai",
     year: "2025",
     context:
-      "Cross-platform React Native app powering on-site inspections, invoice tracking, and Permit-to-Work workflows for Emaar's construction and community teams.",
+      "Cross-platform React Native app powering on-site inspections, invoice tracking, and Permit-to-Work workflows across Emaar properties.",
     challenge:
       "Field workers were on partial-signal sites with bursty connectivity. Real-time-only architectures broke. Paper backups defeated the point of digitizing.",
     approach:
       "Offline-first architecture — optimistic local writes, conflict-aware sync on reconnect, GraphQL subscriptions when bandwidth permits. Native camera integration for inspection evidence.",
-    impact: ["45% efficiency lift", "Zero data loss in field tests", "All three divisions"],
+    impact: ["45% efficiency lift", "Zero data loss in field tests", "Deployed across Emaar properties"],
     stack: ["React Native", "GraphQL", "Redux", "Offline Sync"],
     private: true,
   },
   {
-    num: "03",
-    posterText: "VEEVA\nVAULT",
-    title: "Vault Clinical Integrations",
+    num: "04",
+    posterText: "VEEVA\nHCP",
+    title: "Veeva Network / OpenData + Vault",
     company: "Veeva Systems · London",
     year: "2024 — 2025",
     context:
-      "Enterprise SaaS modules bridging Veeva Vault with third-party clinical-trial systems for 500+ pharmaceutical clients — full FDA 21 CFR Part 11 compliance throughout.",
+      "Contributed to Veeva Network / OpenData — a global Healthcare Professional (HCP) data platform tracking physicians worldwide (specialties, credentials, affiliations, current/historical work locations) — and to Veeva Vault, the regulated content-management platform used by 500+ pharma clients under FDA 21 CFR Part 11.",
     challenge:
-      "Pharma clients couldn't move trial data between systems without manual transfer — a multi-day delay per study. Every integration also had to satisfy a regulator who could shut down a trial for a missing audit trail.",
+      "Two distinct, regulated worlds. The HCP platform had to keep millions of physician records accurate and queryable globally. Vault had to bridge audit-grade document workflows with third-party clinical-trial systems — every integration defensible to regulators.",
     approach:
-      "REST and microservice integrations on Java Spring Boot with React control panels. Compliance baked in — immutable audit logs, role-aware access, replayable event streams. PostgreSQL tuning plus Redis caching for read-heavy paths.",
+      "REST APIs and microservices on Java Spring Boot with React control panels. Compliance baked in — immutable audit logs, role-aware access, replayable event streams. PostgreSQL tuning plus Redis caching for read-heavy HCP queries.",
     impact: ["500+ pharma clients", "99.9% uptime", "65% faster processing", "40% throughput boost"],
     stack: ["React", "Java Spring Boot", "Node.js", "PostgreSQL", "Redis"],
     private: true,
   },
   {
-    num: "04",
+    num: "05",
     posterText: "AR\nMENU",
     title: "AR Restaurant Menu Platform",
     company: "Freelance · MENA region",
